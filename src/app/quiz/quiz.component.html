@@ -1,1 +1,22 @@
-<p>quiz works!</p>
+<h2>Quiz Sobre Isabelle</h2>
+
+<div>
+    <form>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome">
+
+        <div *ngFor="let question of list | async">
+            <p>1. Qual o nome completo de Isabelle?</p>
+            <input type="radio" id="a1" name="alternativa">
+            <label for="a1"></label><br>
+            <input type="radio" id="a2" name="alternativa">
+            <label for="a2"></label><br>
+            <input type="radio" id="a3" name="alternativa">
+            <label for="a3"></label><br>
+            <input type="radio" id="a4" name="alternativa">
+            <label for="a4"></label><br>
+        </div>
+        <div><button (click)="this.add(q.value, a.value, a1.value, a2.value, a3.value, a4.value)">Adicionar</button></div>
+    </form>
+</div>

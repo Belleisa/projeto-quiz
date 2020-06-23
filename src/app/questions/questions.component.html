@@ -1,0 +1,40 @@
+<h2>Firebase Quiz Questions</h2>
+
+<div>Questão</div>
+<div><input #q type="text"></div>
+<div> Resposta:</div> 
+<div><input #a type="text"></div>
+<div> Alternativas</div> 
+<div>a. <input #a1 type="text"></div>
+<div>b. <input #a2 type="text"></div>
+<div>c. <input #a3 type="text"></div>
+<div>d. <input #a4 type="text"></div>
+<div><button (click)="this.add(q.value, a.value, a1.value, a2.value, a3.value, a4.value)">Adicionar</button></div>
+
+<table class="table">
+    <tr>
+        <th>Chave</th>
+        <th>Questão</th>
+        <th>Resposta</th>
+        <th>Alternativa 1</th>
+        <th>Alternativa 2</th>
+        <th>Alternativa 3</th>
+        <th>Alternativa 4</th>
+    </tr>
+    <tr *ngFor="let question of list | async">
+        <td>{{question.key}}
+            <div><button (click)="this.delete(question.key)">Deletar</button></div>
+        </td>
+        <td>{{question.question}}</td>
+        <td>{{question.answer}}</td>
+        <td>{{question.alternativa1}}</td>
+        <td>{{question.alternativa2}}</td>
+        <td>{{question.alternativa3}}</td>
+        <td>{{question.alternativa4}}</td>
+    </tr>
+</table>
+
+
+
+
+
