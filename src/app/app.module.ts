@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { RankingComponent } from './ranking/ranking.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,9 @@ import { RankingComponent } from './ranking/ranking.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ng-quiz-proj": {
+      "hosting": {
+        "projeto-quiz": [
+          "ng-quiz-proj"
+        ]
+      }
+    }
+  }
+}

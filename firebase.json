@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "projeto-quiz",
+      "public": "dist/projeto-quiz",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
