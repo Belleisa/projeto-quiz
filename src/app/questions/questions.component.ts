@@ -28,7 +28,7 @@ export class QuestionsComponent implements OnInit {
   }
 
   getQuestions(){
-    return this.question.getQuestions();
+   this.question.getQuestions().subscribe((questions) => this.getQuestions);
   }
 
   delete() {
