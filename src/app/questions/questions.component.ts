@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { QuestionsService } from '../questions.service';
 
 @Component({
   selector: 'app-questions',
@@ -10,22 +8,14 @@ import { map } from 'rxjs/operators';
 })
 export class QuestionsComponent implements OnInit {
 
-  listRef: AngularFireList<any>;
-  list: Observable<any[]>;
 
-  constructor(private db: AngularFireDatabase) { 
+  constructor(public question: QuestionsService) { 
 
-    this.listRef = db.list('questions');
-    this.list = this.listRef.snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val()}))
-      )
-    );
  
   }
  
-  add(q: string, a: string, a1: string, a2: string, a3: string, a4: string) {
-    this.listRef.push(
+  addQuestion(q: string, a: string, a1: string, a2: string, a3: string, a4: string) {
+    this.question.addQuestion(
       {
         question: q,
         answer: a,
@@ -37,8 +27,12 @@ export class QuestionsComponent implements OnInit {
     ); 
   }
 
-  delete(key: string) {
-    this.listRef.remove(key);
+  getQuestions(){
+   this.question.getQuestions().subscribe((questions) => this.getQuestions);
+  }
+
+  delete() {
+    this.question.delete('questions');
   }
 
   
