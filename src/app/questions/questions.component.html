@@ -9,7 +9,7 @@
 <div>b. <input #a2 type="text"></div>
 <div>c. <input #a3 type="text"></div>
 <div>d. <input #a4 type="text"></div>
-<div><button (click)="this.add(q.value, a.value, a1.value, a2.value, a3.value, a4.value)">Adicionar</button></div>
+<div><button (click)="addQuestion(q.value, a.value, a1.value, a2.value, a3.value, a4.value)">Adicionar</button></div>
 
 <table class="table">
     <tr>
@@ -21,9 +21,9 @@
         <th>Alternativa 3</th>
         <th>Alternativa 4</th>
     </tr>
-    <tr *ngFor="let question of list | async">
+   <tr *ngFor="let question of this.question.getQuestions() | async">
         <td>{{question.key}}
-            <div><button (click)="this.delete(question.key)">Deletar</button></div>
+            <div><button (click)="this.delete()">Deletar</button></div>
         </td>
         <td>{{question.question}}</td>
         <td>{{question.answer}}</td>

@@ -6,17 +6,17 @@
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome">
 
-        <div *ngFor="let question of list | async">
-            <p>1. Qual o nome completo de Isabelle?</p>
+        <!--<div *ngFor="let questions of getQuestion() | async">
+            <p>{{questions.question}}</p>
             <input type="radio" id="a1" name="alternativa">
-            <label for="a1"></label><br>
+            <label for="a1">{{question.alternativa1}}</label><br>
             <input type="radio" id="a2" name="alternativa">
-            <label for="a2"></label><br>
+            <label for="a2">{{question.alternativa2}}</label><br>
             <input type="radio" id="a3" name="alternativa">
-            <label for="a3"></label><br>
+            <label for="a3">{{question.alternativa3}}</label><br>
             <input type="radio" id="a4" name="alternativa">
-            <label for="a4"></label><br>
-        </div>
-        <div><button (click)="this.add(q.value, a.value, a1.value, a2.value, a3.value, a4.value)">Adicionar</button></div>
+            <label for="a4">{{question.alternativa4}}</label><br>
+        </div>-->
+        <div><button >Adicionar</button></div>
     </form>
 </div>
