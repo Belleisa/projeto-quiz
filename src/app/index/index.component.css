@@ -1,0 +1,12 @@
+.team-section {
+    min-height: 300px;
+  }
+  
+  .team-section .inner {
+    margin-top: -20%;
+    background: #1f3747;
+  }
+
+  .bg-blue {
+    background-color: #54648a;
+  }

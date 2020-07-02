@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GithubUser, TeamService } from 'src/app/services/team.service';
 
 @Component({
   selector: 'app-index',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
+  users: GithubUser[];
 
-  constructor() { }
+  constructor(
+    private teamService: TeamService
+  ) { }
 
   ngOnInit(): void {
+    this.users = this.teamService.getTeamInfo();
   }
 
 }

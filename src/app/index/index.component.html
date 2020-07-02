@@ -1,1 +1,71 @@
-<p>index works!</p>
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-xs-12 col-md-5 d-flex justify-content-center flex-column">
+        <h1>Olá, seja bem-vindo ao QuizSimulator!</h1>
+        <p>
+          Este projeto consiste em uma atividade proposta durante a disciplina
+          ITE004 (Tópicos Especiais em Sistemas para Internet II) da
+          <a href="https://fatecrl.edu.br" target="_blank">Fatec Rubens Lara</a>.
+        </p>
+
+  <section class="team-section">
+    <div class="inner">
+      <div class="container">
+        <div class="row">
+          <h2 class="text-center mx-auto">
+            A equipe responsável pelo desenvolvimento deste projeto foi:
+          </h2>
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <div
+              class="card bg-dark p-0 col-xs-12 col-md-4 my-4 mx-2"
+              *ngFor="let user of users"
+            >
+              <img
+                [src]="user.avatar_url"
+                class="card-img-top"
+                [alt]="user.bio"
+              />
+              <div class="card-body">
+                <h5 class="card-title text-light">
+                  {{ user.name }}
+                  <a [href]="user.html_url" target="_blank">
+                    <i class="ml-2 fa fa-github text-light"></i>
+                  </a>
+                  <a
+                    [href]="'https://twitter.com/' + user.twitter_username"
+                    target="_blank"
+                  >
+                    <i class="ml-2 fa fa-twitter text-light"></i>
+                  </a>
+                </h5>
+                <p class="card-text">{{ user.bio }}</p>
+                <p class="d-flex flex-wrap">
+                  <span class="col-6">
+                    Seguidores <strong>{{ user.followers }}</strong>
+                  </span>
+                  <span class="col-6">
+                    Seguindo <strong>{{ user.following }}</strong>
+                  </span>
+                  <span class="col-6">
+                    Repositórios <strong>{{ user.public_repos }}</strong>
+                  </span>
+                </p>
+                <p>
+                  <i class="mr-2 fa fa-map-marker text-light"></i>
+                  {{ user.location }}
+                </p>
+                <a
+                  [href]="user.blog"
+                  class="btn btn-primary btn-block"
+                  target="_blank"
+                >
+                  Visitar <i class="ml-2 fa fa-external-link text-light"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
