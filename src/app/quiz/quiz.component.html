@@ -1,22 +1,138 @@
-<h2>Quiz Sobre Isabelle</h2>
-
-<div>
-    <form>
-
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome">
-
-        <div *ngFor="let question of list | async">
-            <p>1. Qual o nome completo de Isabelle?</p>
-            <input type="radio" id="a1" name="alternativa">
-            <label for="a1"></label><br>
-            <input type="radio" id="a2" name="alternativa">
-            <label for="a2"></label><br>
-            <input type="radio" id="a3" name="alternativa">
-            <label for="a3"></label><br>
-            <input type="radio" id="a4" name="alternativa">
-            <label for="a4"></label><br>
+<main class="d-flex flex-column flex-fill bg-dark">
+    <section class="banner bg-dark pb-5">
+      <div class="d-flex container justify-content-center">
+        <div class="col-5">
+          <h1 class="text-center">Responda nosso quiz</h1>
         </div>
-        <div><button (click)="this.add(q.value, a.value, a1.value, a2.value, a3.value, a4.value)">Adicionar</button></div>
-    </form>
-</div>
+      </div>
+    </section>
+  
+    <section class="d-flex flex-fill flex-column bg-purple">
+  
+      <div class="row flex-fill justify-content-center" *ngIf="user === ''">
+        <div class="col-6">
+          <div class="card bg-dark text-light border-0 p-5 shadow">
+            <div class="form-group">
+              <label>Usuário</label>
+              <input
+                class="form-control"
+                #usuario
+                placeholder="Digite seu nome de usuário"
+              />
+            </div>
+  
+            <button
+              class="btn bg-primary text-light btn-block"
+              (click)="setUser(usuario.value)"
+            >
+              Iniciar
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <div
+        class="row flex-fill align-items-center justify-content-center text-light"
+        *ngIf="user !== '' && !answered"
+      >
+  
+            <div
+              class="row mb-4"
+              *ngFor="let question of questions; let i = index"
+            >
+              <div class="col-12 mb-4">
+                <p class="h3 text-light">{{ i + 1 }}) {{ question.question }}</p>
+              </div>
+              <div class="col-12">
+                <button
+                  [ngClass]="{
+                    'btn-outline-purple': answers[i] !== 'a',
+                    'bg-primary text-light': answers[i] === 'a'
+                  }"
+                  class="btn btn-block mb-2"
+                  (click)="saveQuestionAwnser(i, 'a')"
+                >
+                  {{ question.alternative1 }}
+                </button>
+              </div>
+              <div class="col-6">
+                <button
+                  [ngClass]="{
+                    'btn-outline-purple': answers[i] !== 'b',
+                    'bg-primary text-light': answers[i] === 'b'
+                  }"
+                  class="btn btn-block mb-2"
+                  (click)="saveQuestionAwnser(i, 'b')"
+                >
+                  {{ question.alternative2 }}
+                </button>
+              </div>
+              <div class="col-6">
+                <button
+                  [ngClass]="{
+                    'btn-outline-purple': answers[i] !== 'c',
+                    'bg-primary text-light': answers[i] === 'c'
+                  }"
+                  class="btn btn-block mb-2"
+                  (click)="saveQuestionAwnser(i, 'c')"
+                >
+                  {{ question.alternative3 }}
+                </button>
+              </div>
+              <div class="col-12">
+                <button
+                  [ngClass]="{
+                    'btn-outline-purple': answers[i] !== 'd',
+                    'bg-primary text-light': answers[i] === 'd'
+                  }"
+                  class="btn btn-block mb-2"
+                  (click)="saveQuestionAwnser(i, 'd')"
+                >
+                  {{ question.alternative4 }}
+                </button>
+              </div>
+            </div>
+  
+            <div class="row">
+              <div class="col-12 d-flex justify-content-center">
+                <button
+                  class="btn bg-primary text-light btn-lg px-5"
+                  (click)="sendAnswers()"
+                >
+                  Enviar
+                </button>
+              </div>
+            </div>
+          
+      </div>
+  
+      <div
+        class="row flex-fill align-items-center justify-content-center text-light"
+        *ngIf="answered"
+      >
+        <div class="container">
+          <div class="card bg-dark text-light border-0 p-5 shadow">
+            <div class="row">
+              <div class="col text-center">
+                <p class="h1 mb-4">
+                  Parabéns <span class="text-purple">{{ user }}</span>
+                </p>
+                <p class="h3 mb-2">
+                  Acertou
+                  <span class="text-purple">{{ corrects }} perguntas</span>
+                </p>
+                <p class="h3 mb-4">
+                  Conseguiu <span class="text-purple">{{ points }} pontos</span>
+                </p>
+                <a
+                  routerLink="/"
+                  class="btn bg-primary text-light text-white px-5"
+                  >Ir para a página inicial</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
