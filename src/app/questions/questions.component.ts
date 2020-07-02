@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionsService } from '../questions.service';
+import { QuestionsService } from '../services/questions.service';
 
 @Component({
   selector: 'app-questions',
@@ -23,19 +23,17 @@ export class QuestionsComponent implements OnInit {
         alternativa2: a2,
         alternativa3: a3,
         alternativa4: a4,
-      }
-    ); 
+      
+    }); 
   }
 
   getQuestions(){
-   this.question.getQuestions().subscribe((questions) => this.getQuestions);
+    return this.question.getQuestions();
   }
 
   delete() {
     this.question.delete('questions');
   }
-
-  
 
   ngOnInit(): void {
   }
