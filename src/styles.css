@@ -10,13 +10,13 @@
 body {
   height: 100%;
   color: #fff;
-  background-color: #182031;
+  background-color: #573258;
 }
 
 .bg-dark-blue {
-  background-color: #182031 !important;
+  background-color: #573258 !important;
 }
 
 .navbar {
-  background-color: #1f283d !important;
+  background-color: rgb(253, 221, 241) !important;
 }
