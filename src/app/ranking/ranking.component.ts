@@ -11,8 +11,22 @@ export class RankingComponent implements OnInit {
 
   constructor(private firebaseService: FirebaseService) { }
 
+  getAnswers() {
+    this.firebaseService.getAnswers().subscribe((answers) => {
+      this.updateList(answers);
+    });
+  }
+
+  updateList(answers: any[]) {
+    const orderedList = answers.sort((a: Answer, b: Answer) => {
+      return a.points > b.points ? -1 : a.points < b.points ? 1 : 0;
+    });
+
+    this.answers = orderedList.splice(0, 10);
+  }
 
   ngOnInit(): void {
+    this.getAnswers();
   }
 
 }
