@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService, Answer } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-ranking',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent implements OnInit {
+  answers = [];
 
-  constructor() { }
+  constructor(private firebaseService: FirebaseService) { }
+
 
   ngOnInit(): void {
   }

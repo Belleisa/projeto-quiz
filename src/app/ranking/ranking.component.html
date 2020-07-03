@@ -1,1 +1,27 @@
-<p>ranking works!</p>
+<div class="px-3">
+    <h2>Ranking</h2>
+    <div *ngIf="!answers.length">
+      Nenhum usuário respondeu ao questionário ainda!
+    </div>
+    <table
+      class="table table-striped rounded table-dark"
+      *ngIf="answers.length"
+    >
+      <thead>
+        <tr>
+          <th>Colocação</th>
+          <th>Usuário</th>
+          <th>Corretas</th>
+          <th>Pontuação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let answer of answers; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ answer.usuario }}</td>
+          <td>{{ answer.correct_answer }}</td>
+          <td>{{ answer.points }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
