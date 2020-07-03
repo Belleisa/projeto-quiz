@@ -5,10 +5,10 @@ import { map } from 'rxjs/operators';
 export type Question = {
   question: string;
   answer: string;
-  alternative1: string;
-  alternative2: string;
-  alternative3: string;
-  alternative4: string;
+  alternativa1: string;
+  alternativa2: string;
+  alternativa3: string;
+  alternativa4: string;
 };
 
 export type Answer = {
@@ -25,6 +25,10 @@ export class FirebaseService {
 
   addAnswer(resposta: Answer) {
     this.db.list('answers').push(resposta);
+  }
+
+  addQuestion(question: Question) {
+    this.db.list('questions').push(question);
   }
 
   getQuestions() {
