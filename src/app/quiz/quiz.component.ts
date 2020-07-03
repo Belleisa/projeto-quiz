@@ -36,7 +36,7 @@ export class QuizComponent implements OnInit {
     return array;
   }
 
-  saveQuestionAwnser(question, answered) {
+  saveQuestionAnswser(question, answered) {
     this.answers[question] = answered;
   }
 

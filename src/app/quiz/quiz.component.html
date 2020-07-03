@@ -1,5 +1,5 @@
 <main class="d-flex flex-column flex-fill bg-dark">
-    <section class="banner bg-dark pb-5">
+    <section class="banner">
       <div class="d-flex container justify-content-center">
         <div class="col-5">
           <h1 class="text-center">Responda nosso quiz</h1>
@@ -7,11 +7,11 @@
       </div>
     </section>
   
-    <section class="d-flex flex-fill flex-column bg-purple">
+    <section>
   
       <div class="row flex-fill justify-content-center" *ngIf="user === ''">
         <div class="col-6">
-          <div class="card bg-red text-light border-0 p-5 shadow">
+          <div class="card bg-light text-light border-0 p-5 shadow mx-auto">
             <div class="form-group">
               <label>Usuário</label>
               <input
@@ -46,49 +46,49 @@
               <div class="col-12">
                 <button
                   [ngClass]="{
-                    'btn-outline-purple': answers[i] !== 'a',
+                    'btn-outline-vinho': answers[i] !== 'a',
                     'bg-primary text-light': answers[i] === 'a'
                   }"
                   class="btn btn-block mb-2"
-                  (click)="saveQuestionAwnser(i, 'a')"
+                  (click)="saveQuestionAnswser(i, 'a')"
                 >
-                  {{ question.alternative1 }}
+                  {{ question.alternativa1 }}
                 </button>
               </div>
               <div class="col-6">
                 <button
                   [ngClass]="{
-                    'btn-outline-purple': answers[i] !== 'b',
+                    'btn-outline-vinho': answers[i] !== 'b',
                     'bg-primary text-light': answers[i] === 'b'
                   }"
                   class="btn btn-block mb-2"
-                  (click)="saveQuestionAwnser(i, 'b')"
+                  (click)="saveQuestionAnswser(i, 'b')"
                 >
-                  {{ question.alternative2 }}
+                  {{ question.alternativa2 }}
                 </button>
               </div>
               <div class="col-6">
                 <button
                   [ngClass]="{
-                    'btn-outline-purple': answers[i] !== 'c',
+                    'btn-outline-vinho': answers[i] !== 'c',
                     'bg-primary text-light': answers[i] === 'c'
                   }"
                   class="btn btn-block mb-2"
-                  (click)="saveQuestionAwnser(i, 'c')"
+                  (click)="saveQuestionAnswser(i, 'c')"
                 >
-                  {{ question.alternative3 }}
+                  {{ question.alternativa3 }}
                 </button>
               </div>
               <div class="col-12">
                 <button
                   [ngClass]="{
-                    'btn-outline-purple': answers[i] !== 'd',
+                    'btn-outline-vinho': answers[i] !== 'd',
                     'bg-primary text-light': answers[i] === 'd'
                   }"
                   class="btn btn-block mb-2"
-                  (click)="saveQuestionAwnser(i, 'd')"
+                  (click)="saveQuestionAnswser(i, 'd')"
                 >
-                  {{ question.alternative4 }}
+                 {{ question.alternativa4 }}
                 </button>
               </div>
             </div>
@@ -111,18 +111,18 @@
         *ngIf="answered"
       >
         <div class="container">
-          <div class="card bg-dark text-light border-0 p-5 shadow">
+          <div class="card bg-dark text-light border-0 p-5 shadow mx-auto">
             <div class="row">
               <div class="col text-center">
                 <p class="h1 mb-4">
-                  Parabéns <span class="text-purple">{{ user }}</span>
+                  Parabéns <span>{{ user }}</span>
                 </p>
                 <p class="h3 mb-2">
                   Acertou
-                  <span class="text-purple">{{ corrects }} perguntas</span>
+                  <span>{{ corrects }} perguntas</span>
                 </p>
                 <p class="h3 mb-4">
-                  Conseguiu <span class="text-purple">{{ points }} pontos</span>
+                  Conseguiu <span>{{ points }} pontos</span>
                 </p>
                 <a
                   routerLink="/"
