@@ -36,6 +36,12 @@ export class QuizComponent implements OnInit {
     return array;
   }
 
+  getQuestions() {
+    this.firebaseService.getQuestions().subscribe((questions) => {
+      this.questions = this.shuffle(questions);
+    });
+  }
+
   saveQuestionAnswser(question, answered) {
     this.answers[question] = answered;
   }
@@ -46,11 +52,13 @@ export class QuizComponent implements OnInit {
     let correctAnswer = 0;
 
     this.questions.forEach((question: Question, index: number) => {
-      if (this.answers[index] && this.answers?.[index] === question.answer) {
-        points += 10;
-        correctAnswer += 1;
+      if (this.answers[index]) {
+        if (this.answers[index] === question.answer) {
+          points += 100;
+          correctAnswer += 1;
+        }
       }
-    });
+    });;
 
     this.points = points;
     this.corrects = correctAnswer;
@@ -68,8 +76,6 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.firebaseService.getQuestions().subscribe((questions) => {
-      this.questions = this.shuffle(questions);
-    });
-  }
+    this.getQuestions();
+    }
 }

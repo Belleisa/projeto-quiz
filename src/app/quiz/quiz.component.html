@@ -1,138 +1,139 @@
 <main class="d-flex flex-column flex-fill bg-dark">
-    <section class="banner">
-      <div class="d-flex container justify-content-center">
-        <div class="col-5">
-          <h1 class="text-center">Responda nosso quiz</h1>
+  <section class="banner">
+    <div class="d-flex container justify-content-center">
+      <div class="col-5">
+        <h1 class="text-center">Responda nosso quiz</h1>
+      </div>
+    </div>
+  </section>
+
+  <section>
+
+    <div class="row flex-fill justify-content-center" *ngIf="user === ''">
+      <div class="col-6">
+        <div class="card bg-light text-light border-0 p-5 shadow mx-auto">
+          <div class="form-group">
+            <label>Usuário</label>
+            <input
+              class="form-control"
+              #usuario
+              placeholder="Digite seu nome de usuário"
+            />
+          </div>
+
+          <button
+            class="btn bg-primary text-light btn-block"
+            (click)="setUser(usuario.value)"
+          >
+            Iniciar
+          </button>
         </div>
       </div>
-    </section>
-  
-    <section>
-  
-      <div class="row flex-fill justify-content-center" *ngIf="user === ''">
-        <div class="col-6">
-          <div class="card bg-light text-light border-0 p-5 shadow mx-auto">
-            <div class="form-group">
-              <label>Usuário</label>
-              <input
-                class="form-control"
-                #usuario
-                placeholder="Digite seu nome de usuário"
-              />
+    </div>
+
+    <div
+      class="row flex-fill align-items-center justify-content-center text-light"
+      *ngIf="user !== '' && !answered"
+    >
+
+          <div
+            class="row mb-4"
+            *ngFor="let question of questions; let i = index"
+          >
+            <div class="col-12 mb-4">
+              <p class="h3 text-light">{{ i + 1 }}) {{ question.question }}</p>
             </div>
-  
-            <button
-              class="btn bg-primary text-light btn-block"
-              (click)="setUser(usuario.value)"
-            >
-              Iniciar
-            </button>
+            <div class="col-12">
+              <button
+                [ngClass]="{
+                  'btn-outline-vinho': answers[i] !== 'a',
+                  'bg-primary text-light': answers[i] === 'a'
+                }"
+                class="btn btn-block mb-2"
+                (click)="saveQuestionAnswser(i, 'a')"
+              >
+                {{ question.alternativa1 }}
+              </button>
+            </div>
+            <div class="col-6">
+              <button
+                [ngClass]="{
+                  'btn-outline-vinho': answers[i] !== 'b',
+                  'bg-primary text-light': answers[i] === 'b'
+                }"
+                class="btn btn-block mb-2"
+                (click)="saveQuestionAnswser(i, 'b')"
+              >
+                {{ question.alternativa2 }}
+              </button>
+            </div>
+            <div class="col-6">
+              <button
+                [ngClass]="{
+                  'btn-outline-vinho': answers[i] !== 'c',
+                  'bg-primary text-light': answers[i] === 'c'
+                }"
+                class="btn btn-block mb-2"
+                (click)="saveQuestionAnswser(i, 'c')"
+              >
+                {{ question.alternativa3 }}
+              </button>
+            </div>
+            <div class="col-12">
+              <button
+                [ngClass]="{
+                  'btn-outline-vinho': answers[i] !== 'd',
+                  'bg-primary text-light': answers[i] === 'd'
+                }"
+                class="btn btn-block mb-2"
+                (click)="saveQuestionAnswser(i, 'd')"
+              >
+               {{ question.alternativa4 }}
+              </button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+              <button
+                class="btn bg-primary text-light btn-lg px-5"
+                (click)="sendAnswers()"
+              >
+                Enviar
+              </button>
+            </div>
+          </div>
+        
+    </div>
+
+    <div
+      class="row flex-fill align-items-center justify-content-center text-light"
+      *ngIf="answered"
+    >
+      <div class="container">
+        <div class="card bg-dark text-light border-0 p-5 shadow mx-auto">
+          <div class="row">
+            <div class="col text-center">
+              <p class="h1 mb-4">
+                Parabéns <span>{{ user }}</span>
+              </p>
+              <p class="h3 mb-2">
+                Acertou
+                <span>{{ corrects }} perguntas</span>
+              </p>
+              <p class="h3 mb-4">
+                Conseguiu <span>{{ points }} pontos</span>
+              </p>
+              <a
+                routerLink="/"
+                class="btn bg-primary text-light text-white px-5"
+                >Ir para a página inicial</a
+              >
+            </div>
           </div>
         </div>
       </div>
-  
-      <div
-        class="row flex-fill align-items-center justify-content-center text-light"
-        *ngIf="user !== '' && !answered"
-      >
-  
-            <div
-              class="row mb-4"
-              *ngFor="let question of questions; let i = index"
-            >
-              <div class="col-12 mb-4">
-                <p class="h3 text-light">{{ i + 1 }}) {{ question.question }}</p>
-              </div>
-              <div class="col-12">
-                <button
-                  [ngClass]="{
-                    'btn-outline-vinho': answers[i] !== 'a',
-                    'bg-primary text-light': answers[i] === 'a'
-                  }"
-                  class="btn btn-block mb-2"
-                  (click)="saveQuestionAnswser(i, 'a')"
-                >
-                  {{ question.alternativa1 }}
-                </button>
-              </div>
-              <div class="col-6">
-                <button
-                  [ngClass]="{
-                    'btn-outline-vinho': answers[i] !== 'b',
-                    'bg-primary text-light': answers[i] === 'b'
-                  }"
-                  class="btn btn-block mb-2"
-                  (click)="saveQuestionAnswser(i, 'b')"
-                >
-                  {{ question.alternativa2 }}
-                </button>
-              </div>
-              <div class="col-6">
-                <button
-                  [ngClass]="{
-                    'btn-outline-vinho': answers[i] !== 'c',
-                    'bg-primary text-light': answers[i] === 'c'
-                  }"
-                  class="btn btn-block mb-2"
-                  (click)="saveQuestionAnswser(i, 'c')"
-                >
-                  {{ question.alternativa3 }}
-                </button>
-              </div>
-              <div class="col-12">
-                <button
-                  [ngClass]="{
-                    'btn-outline-vinho': answers[i] !== 'd',
-                    'bg-primary text-light': answers[i] === 'd'
-                  }"
-                  class="btn btn-block mb-2"
-                  (click)="saveQuestionAnswser(i, 'd')"
-                >
-                 {{ question.alternativa4 }}
-                </button>
-              </div>
-            </div>
-  
-            <div class="row">
-              <div class="col-12 d-flex justify-content-center">
-                <button
-                  class="btn bg-primary text-light btn-lg px-5"
-                  (click)="sendAnswers()"
-                >
-                  Enviar
-                </button>
-              </div>
-            </div>
-          
-      </div>
-  
-      <div
-        class="row flex-fill align-items-center justify-content-center text-light"
-        *ngIf="answered"
-      >
-        <div class="container">
-          <div class="card bg-dark text-light border-0 p-5 shadow mx-auto">
-            <div class="row">
-              <div class="col text-center">
-                <p class="h1 mb-4">
-                  Parabéns <span>{{ user }}</span>
-                </p>
-                <p class="h3 mb-2">
-                  Acertou
-                  <span>{{ corrects }} perguntas</span>
-                </p>
-                <p class="h3 mb-4">
-                  Conseguiu <span>{{ points }} pontos</span>
-                </p>
-                <a
-                  routerLink="/"
-                  class="btn bg-primary text-light text-white px-5"
-                  >Ir para a página inicial</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
+
